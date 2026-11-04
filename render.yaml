@@ -1,0 +1,26 @@
+# Deploy on Render (https://render.com): New > Blueprint, then select this repository.
+services:
+  - type: web
+    name: ema-rewards
+    runtime: node
+    plan: starter # a persistent disk needs a paid instance; the database lives on it
+    buildCommand: npm ci && npm run build
+    startCommand: node --no-warnings server/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: APP_SECRET
+        generateValue: true
+      - key: OWNER_EMAIL
+        sync: false
+      - key: OWNER_PASSWORD
+        sync: false
+      - key: SEED_DEMO
+        value: "true"
+    disk:
+      name: ema-data
+      mountPath: /var/data
+      sizeGB: 1

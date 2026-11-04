@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, .font-display { letter-spacing: -0.01em; }
+  input, select, textarea { font-size: 16px; } /* prevents iOS zoom on focus */
+}
+
+@layer components {
+  .card { @apply bg-paper rounded-2xl shadow-card border border-washi-2; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-40 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-ink text-washi hover:bg-ink-2; }
+  .btn-beni { @apply btn bg-beni text-white hover:bg-beni-dark; }
+  .btn-ghost { @apply btn bg-transparent text-ink hover:bg-washi-2; }
+  .btn-outline { @apply btn border border-washi-3 bg-paper text-ink hover:bg-washi; }
+  .btn-lg { @apply px-6 py-3.5 text-base rounded-2xl; }
+  .input { @apply w-full rounded-xl border border-washi-3 bg-white px-3.5 py-2.5 text-ink placeholder:text-ink-4 focus:outline-none focus:ring-2 focus:ring-beni/30 focus:border-beni; }
+  .label { @apply block text-xs font-semibold uppercase tracking-wider text-ink-3 mb-1.5; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .eyebrow { @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-3; }
+  .table { @apply w-full text-sm; }
+  .table th { @apply text-left text-[11px] font-semibold uppercase tracking-wider text-ink-3 px-3 py-2 border-b border-washi-2 whitespace-nowrap; }
+  .table td { @apply px-3 py-2.5 border-b border-washi-2 align-top; }
+}
+
+.tier-silver { background: linear-gradient(135deg, #e9ecef 0%, #b9c0c8 45%, #f4f6f8 60%, #a3abb5 100%); color: #1d1917; }
+.tier-gold { background: linear-gradient(135deg, #f3e2b3 0%, #c9a35b 40%, #f7e7bd 58%, #a8823f 100%); color: #2a1f0e; }
+.tier-platinum { background: linear-gradient(135deg, #2f3e55 0%, #1d1917 45%, #3c4a62 62%, #12100f 100%); color: #f5efe4; }
+.sheen { background-image: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%); background-size: 200% 100%; }
+
+/* seigaiha (wave) pattern */
+.seigaiha {
+  background-color: #1d1917;
+  background-image:
+    radial-gradient(circle at 100% 150%, #1d1917 24%, #2a2421 24%, #2a2421 28%, #1d1917 28%, #1d1917 36%, #2a2421 36%, #2a2421 40%, transparent 40%),
+    radial-gradient(circle at 0 150%, #1d1917 24%, #2a2421 24%, #2a2421 28%, #1d1917 28%, #1d1917 36%, #2a2421 36%, #2a2421 40%, transparent 40%),
+    radial-gradient(circle at 50% 100%, #2a2421 10%, #1d1917 10%, #1d1917 23%, #2a2421 23%, #2a2421 30%, #1d1917 30%, #1d1917 43%, #2a2421 43%, #2a2421 50%, #1d1917 50%, #1d1917 63%, #2a2421 63%, #2a2421 71%, transparent 71%),
+    radial-gradient(circle at 100% 50%, #2a2421 5%, #1d1917 5%, #1d1917 15%, #2a2421 15%, #2a2421 20%, #1d1917 20%, #1d1917 29%, #2a2421 29%, #2a2421 34%, #1d1917 34%, #1d1917 44%, #2a2421 44%, #2a2421 49%, transparent 49%),
+    radial-gradient(circle at 0 50%, #2a2421 5%, #1d1917 5%, #1d1917 15%, #2a2421 15%, #2a2421 20%, #1d1917 20%, #1d1917 29%, #2a2421 29%, #2a2421 34%, #1d1917 34%, #1d1917 44%, #2a2421 44%, #2a2421 49%, transparent 49%);
+  background-size: 64px 32px;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+
+@keyframes petal {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(540deg); opacity: 0; }
+}
